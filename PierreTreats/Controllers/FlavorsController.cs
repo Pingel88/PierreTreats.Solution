@@ -111,16 +111,17 @@ namespace PierreTreats.Controllers
         _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
       }
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Flavors", new { id = flavor.FlavorId });
     }
 
     [HttpPost]
     public ActionResult DeleteTreat(int joinId)
     {
       FlavorTreat joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
+      int flavorId = joinEntry.FlavorId;
       _db.FlavorTreat.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Flavors", new { id = flavorId });
     }
   }
 }
