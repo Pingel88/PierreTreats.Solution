@@ -38,7 +38,7 @@ namespace PierreTreats.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Flavor flavor, int FlavorId)
+    public async Task<ActionResult> Create(Flavor flavor, int TreatId)
     {
       string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
