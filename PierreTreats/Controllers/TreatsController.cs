@@ -11,7 +11,6 @@ using PierreTreats.Models;
 
 namespace PierreTreats.Controllers
 {
-  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierreTreatsContext _db;
@@ -23,14 +22,13 @@ namespace PierreTreats.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     public async Task<ActionResult> Index()
     {
-      string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
-      List<Treat> userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
-      return View(userTreats);
+      return View(_db.Treats.ToList());
     }
 
+    [Authorize]
     public ActionResult Create()
     {
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
@@ -53,6 +51,7 @@ namespace PierreTreats.Controllers
       return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Treat thisTreat = _db.Treats
@@ -62,6 +61,7 @@ namespace PierreTreats.Controllers
       return View(thisTreat);
     }
 
+    [Authorize]
     public ActionResult Edit(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
@@ -81,6 +81,7 @@ namespace PierreTreats.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize]
     public ActionResult Delete(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
@@ -96,6 +97,7 @@ namespace PierreTreats.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize]
     public ActionResult AddFlavor (int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
