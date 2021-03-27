@@ -38,7 +38,7 @@ namespace PierreTreats.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Treat treat, int TreatId)
+    public async Task<ActionResult> Create(Treat treat, int FlavorId)
     {
       string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
@@ -66,7 +66,7 @@ namespace PierreTreats.Controllers
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
-      return View(thisFlavor);
+      return View(thisTreat);
     }
 
     [HttpPost]
