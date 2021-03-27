@@ -25,8 +25,8 @@ namespace PierreTreats.Controllers
 
     public async Task<ActionResult> Index()
     {
-      int userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      User currentUser = await _userManager.FindByIdAsync(userId);
+      string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       List<Flavor> userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userFlavors);
     }
@@ -40,8 +40,8 @@ namespace PierreTreats.Controllers
     [HttpPost]
     public async Task<ActionResult> Create(Flavor flavor, int FlavorId)
     {
-      int userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      User currentUser = await _userManager.FindByIdAsync(userId);
+      string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       flavor.User = currentUser;
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
