@@ -40,8 +40,8 @@ namespace PierreTreats.Controllers
     [HttpPost]
     public async Task<ActionResult> Create(Treat treat, int TreatId)
     {
-      int userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      User currentUser = await _userManager.FindByIdAsync(userId);
+      string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       treat.User = currentUser;
       _db.Treats.Add(treat);
       _db.SaveChanges();
