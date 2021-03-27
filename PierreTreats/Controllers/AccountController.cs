@@ -8,11 +8,11 @@ namespace PierreTreats.Controllers
 {
   public class AccountController : Controller
   {
-    private readonly PierreTreats _db;
+    private readonly PierreTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ToDoListContext db)
+    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, PierreTreatsContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;
@@ -32,7 +32,7 @@ namespace PierreTreats.Controllers
     [HttpPost]
     public async Task<ActionResult> Register (RegisterViewModel model)
     {
-      User user = new ApplicationUser { UserName = model.Email };
+      ApplicationUser user = new ApplicationUser { UserName = model.Email };
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
       if (result.Succeeded)
       {
