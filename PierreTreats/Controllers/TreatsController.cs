@@ -25,8 +25,8 @@ namespace PierreTreats.Controllers
 
     public async Task<ActionResult> Index()
     {
-      int userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      User currentUser = await _userManager.FindByIdAsync(userId);
+      string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       List<Treat> userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userTreats);
     }
