@@ -9,6 +9,8 @@
 <h2>Register a new user</h2>
 
 <hr>
+<input type="button" class="btn btn-outline-primary"  value="Home" onclick="location.href='@Url.Action("Index", "Home")'">
+<hr>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
