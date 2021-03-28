@@ -24,7 +24,7 @@ namespace PierreTreats.Controllers
     }
 
     [AllowAnonymous]
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
       return View(_db.Flavors.ToList());
     }
@@ -105,7 +105,7 @@ namespace PierreTreats.Controllers
     [HttpPost]
     public ActionResult AddTreat(Flavor flavor, int TreatId)
     {
-      if (TreatId != 0)
+      if (TreatId != 0 && !_db.FlavorTreat.Any(entry => entry.FlavorId == flavor.FlavorId && entry.TreatId == TreatId))
       {
         _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
       }
