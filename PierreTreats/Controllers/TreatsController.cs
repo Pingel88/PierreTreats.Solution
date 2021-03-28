@@ -11,6 +11,7 @@ using PierreTreats.Models;
 
 namespace PierreTreats.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierreTreatsContext _db;
@@ -28,7 +29,6 @@ namespace PierreTreats.Controllers
       return View(_db.Treats.ToList());
     }
 
-    [Authorize]
     public ActionResult Create()
     {
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
@@ -61,7 +61,6 @@ namespace PierreTreats.Controllers
       return View(thisTreat);
     }
 
-    [Authorize]
     public ActionResult Edit(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
@@ -81,7 +80,6 @@ namespace PierreTreats.Controllers
       return RedirectToAction("Index");
     }
 
-    [Authorize]
     public ActionResult Delete(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
@@ -97,7 +95,6 @@ namespace PierreTreats.Controllers
       return RedirectToAction("Index");
     }
 
-    [Authorize]
     public ActionResult AddFlavor (int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
