@@ -1,5 +1,6 @@
 ## <div align="center">Pierre's Sweet and Savory Treats</div>
-#### <div align="center">*Epicodus Week 12 C# Project 03/26/2021* </div> 
+#### <div align="center">*Epicodus Week 12 C# Project 03/26/2021* </div>
+#### <div align="center">*Updated 05/17/2021* </div> 
 ***<p align="center">By Mike Pingel***</p>
 <p align="center">
 <img alt="C#" src="https://forthebadge.com/images/badges/made-with-c-sharp.svg"/>
@@ -27,14 +28,15 @@ ___
 To run this project locally you will need to have .NET Core and MySQL, follow along with the Epicodus C# setup lessons to verify installation.
 
 ###  *View website*
-A GitHub page is not available for this project. To view functionality in your browser:
-* Create a new database using migration through Entity
-  * Navigate to the **'PierreTreats'** folder in your terminal
-  * Enter `dotnet ef database update`
-* Rename **EDITMEappsettings.json** in the **'PierreTreats'** folder to **appsettings.json**
+Web application is current live at:
+* https://www.mikepingel.tech/
+
+To view code and interact offline:
+* Navigate to the **'PierreTreats'** folder in your terminal
+* Rename **EDITMEappsettings.json** to **appsettings.json**
 * Open **appsettings.json** in VS Code or Notepad
   * Enter your password in the DefaultConnection string (replacing `[PASSWORD]`) and save the file
-* If not already there, navigate to the **'PierreTreats'** folder in your terminal
+* Enter `dotnet ef database update` to create a new database using migration through Entity
 * Enter `dotnet run`
 * Open your browser and visit http://localhost:5000
 
